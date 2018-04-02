@@ -1,21 +1,21 @@
-import React, { Component, Children, createElement, cloneElement } from 'react'
-import PropTypes from 'prop-types'
-import { Motion, spring, presets } from 'react-motion'
-import Measure from 'react-measure'
+import React, { Component, Children, createElement, cloneElement } from "react"
+import PropTypes from "prop-types"
+import { Motion, spring, presets } from "react-motion"
+import Measure from "react-measure"
 
 class FluidContainer extends Component {
   static propTypes = {
     tag: PropTypes.string,
-    height: PropTypes.oneOfType([PropTypes.number, PropTypes.oneOf(['auto'])]),
-    rmConfig: React.PropTypes.objectOf(React.PropTypes.number),
+    height: PropTypes.oneOfType([PropTypes.number, PropTypes.oneOf(["auto"])]),
+    rmConfig: PropTypes.objectOf(PropTypes.number),
     children: PropTypes.node.isRequired,
     beforeAnimation: PropTypes.func,
     afterAnimation: PropTypes.func,
   }
 
   static defaultProps = {
-    tag: 'div',
-    height: 'auto',
+    tag: "div",
+    height: "auto",
     rmConfig: presets.noWobble,
     beforeAnimation: () => null,
     afterAnimation: () => null,
@@ -26,7 +26,7 @@ class FluidContainer extends Component {
     this.state = {
       height: 0,
     }
-    this._heightReady = props.height !== 'auto'
+    this._heightReady = props.height !== "auto"
     this._currHeight = null
     this._firstMeasure = true
   }
@@ -70,7 +70,7 @@ class FluidContainer extends Component {
 
     this._measureComponent.measure()
 
-    if (typeof child.props.onInput === 'function') {
+    if (typeof child.props.onInput === "function") {
       child.props.onInput(e)
     }
   }
@@ -85,11 +85,11 @@ class FluidContainer extends Component {
       afterAnimation,
       ...restProps
     } = this.props
-    const rmHeight = height === 'auto' ? this.state.height : height
+    const rmHeight = height === "auto" ? this.state.height : height
     const child = (
       <Measure
         ref={c => (this._measureComponent = c)}
-        whitelist={['height']}
+        whitelist={["height"]}
         onMeasure={this._handleMeasure}
       >
         {cloneElement(Children.only(children), { onInput: this._handleInput })}
@@ -111,12 +111,13 @@ class FluidContainer extends Component {
               style: {
                 height: this._heightReady
                   ? _height
-                  : this._currHeight || 'auto',
+                  : this._currHeight || "auto",
                 ...restProps.style,
               },
             },
             child
-          )}
+          )
+        }
       </Motion>
     )
   }

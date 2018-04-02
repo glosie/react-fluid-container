@@ -19,13 +19,13 @@ Graceful dynamic/variable height animation.
 [Codepen Demo](http://codepen.io/souporserious/pen/akjyWv)
 
 ```js
-import FluidContainer from 'react-fluid-container'
+import FluidContainer from "react-fluid-container"
 
 class App extends Component {
   constructor() {
     super(props)
     this.state = {
-      showPanel: false
+      showPanel: false,
     }
   }
 
@@ -40,7 +40,7 @@ class App extends Component {
           Toggle accordion
         </div>
         <FluidContainer
-          height={showPanel ? 'auto' : 0}
+          height={showPanel ? "auto" : 0}
           className="accordion-panel"
         >
           <div>Auto height animation!</div>
@@ -61,7 +61,7 @@ The wrapping element around your only `child` element. Defaults to `div`. Any ot
 
 The height value you want to animate to. Defaults to `auto`.
 
-#### `rmConfig`: React.PropTypes.objectOf(React.PropTypes.number)
+#### `rmConfig`: PropTypes.objectOf(PropTypes.number)
 
 Pass in any valid [React Motion config object](https://github.com/chenglou/react-motion#--spring-val-number-config-springhelperconfig--opaqueconfig).
 
